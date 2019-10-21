@@ -1,0 +1,7 @@
+{
+  "name": "Klingon Lint",
+  "ruleKeys": [
+    "K001",
+    "K002"
+  ]
+}

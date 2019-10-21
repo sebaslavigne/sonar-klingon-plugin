@@ -1,0 +1,15 @@
+{
+  "title": "There should be a grunt after every other sentence",
+  "type": "CODE_SMELL",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "2min"
+  },
+  "tags": [
+    
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "KSPEC-002",
+  "sqKey": "K002"
+}

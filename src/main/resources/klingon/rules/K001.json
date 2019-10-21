@@ -1,0 +1,15 @@
+{
+  "title": "A Klingon warrior must be honorable",
+  "type": "BUG",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "2min"
+  },
+  "tags": [
+    
+  ],
+  "defaultSeverity": "Blocker",
+  "ruleSpecification": "KSPEC-001",
+  "sqKey": "K001"
+}
