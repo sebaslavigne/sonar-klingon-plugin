@@ -20,28 +20,33 @@
 package org.sebas.plugins.klingon.settings;
 
 import java.util.List;
+
+import jdk.javadoc.internal.doclets.formats.html.markup.HtmlConstants;
 import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.Qualifiers;
 
 import static java.util.Arrays.asList;
 
 public class KlingonLanguageProperties {
-
-  public static final String FILE_SUFFIXES_KEY = "sonar.klingon.file.suffixes";
-  public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".klg,.kgn";
-
-  private KlingonLanguageProperties() {
-    // only statics
-  }
-
-  public static List<PropertyDefinition> getProperties() {
-    return asList(PropertyDefinition.builder(FILE_SUFFIXES_KEY)
-      .defaultValue(FILE_SUFFIXES_DEFAULT_VALUE)
-      .category("Klingon")
-      .name("File Suffixes")
-      .description("Comma-separated list of suffixes for files to analyze.")
-      .onQualifiers(Qualifiers.PROJECT)
-      .build());
-  }
-
+	
+	public static final String FILE_SUFFIXES_KEY = "sonar.klingon.file.suffixes";
+	public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".klg,.kgn";
+	
+	private KlingonLanguageProperties() {
+		// only statics
+	}
+	
+	public static List<PropertyDefinition> getProperties() {
+		return asList(PropertyDefinition.builder(FILE_SUFFIXES_KEY)
+				.defaultValue(FILE_SUFFIXES_DEFAULT_VALUE)
+				.category("Klingon")
+				.name("Klingon File Suffixes")
+				.description("List of file suffixes that will be scanned.")
+				.category("Klingon")
+				.onQualifiers(Qualifiers.PROJECT)
+				.multiValues(true)
+				.build());
+		
+	}
+	
 }

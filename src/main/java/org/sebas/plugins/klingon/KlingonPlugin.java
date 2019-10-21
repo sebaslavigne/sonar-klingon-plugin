@@ -28,44 +28,45 @@ import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
 
 import static java.util.Arrays.asList;
+import static org.sebas.plugins.klingon.settings.KlingonLanguageProperties.FILE_SUFFIXES_DEFAULT_VALUE;
 
 /**
  * This class is the entry point for all extensions. It is referenced in pom.xml.
  */
 public class KlingonPlugin implements Plugin {
-
-  @Override
-  public void define(Context context) {
-    // tutorial on hooks
-    // http://docs.sonarqube.org/display/DEV/Adding+Hooks
+	
+	@Override
+	public void define(Context context) {
+		// tutorial on hooks
+		// http://docs.sonarqube.org/display/DEV/Adding+Hooks
 //    context.addExtensions(DisplayIssuesInScanner.class, DisplayQualityGateStatus.class);
-
-    // tutorial on languages
-    context.addExtensions(Klingon.class, KlingonQualityProfile.class);
-    context.addExtension(KlingonLanguageProperties.getProperties());
-
-    // tutorial on measures
+		
+		// tutorial on languages
+		context.addExtensions(Klingon.class, KlingonQualityProfile.class);
+		context.addExtensions(KlingonLanguageProperties.getProperties());
+		
+		// tutorial on measures
 //    context
 //      .addExtensions(ExampleMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
-
-    // tutorial on rules
+		
+		// tutorial on rules
 //    context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
-    context.addExtensions(KlingonRulesDefinition.class, KlingonLintIssuesLoaderSensor.class);
-
-    // tutorial on settings
+		context.addExtensions(KlingonRulesDefinition.class, KlingonLintIssuesLoaderSensor.class);
+		
+		// tutorial on settings
 //    context
 //      .addExtensions(HelloWorldProperties.getProperties())
 //      .addExtension(SayHelloFromScanner.class);
-
-    // tutorial on web extensions
+		
+		// tutorial on web extensions
 //    context.addExtension(MyPluginPageDefinition.class);
-
-    context.addExtensions(asList(
-      PropertyDefinition.builder("sonar.klingon.file.suffixes")
-        .name("Suffixes FooLint")
-        .description("Suffixes supported by FooLint")
-        .category("FooLint")
-        .defaultValue("")
-        .build()));
-  }
+		
+//		context.addExtensions(asList(
+//			PropertyDefinition.builder("sonar.klingon.file.suffixes")
+//				.name("Suffixes Klingon")
+//				.description("Suffixes supported by Klingon")
+//				.category("Klingon")
+//				.defaultValue(FILE_SUFFIXES_DEFAULT_VALUE)
+//				.build()));
+	}
 }
