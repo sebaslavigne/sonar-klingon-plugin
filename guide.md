@@ -36,7 +36,7 @@ This just takes care of registering the rule in Sonar. It is the Sensor's job to
 
 ## Language and language properties
 
-For a sensor to know which files to analyze, a language must define the file extensions it uses. This is done extending `org.sonar.api.resources.AbstractLanguage` (which `Klingon` class does in the example) and overriding the method `getFileSuffixes()`. The example also uses the class `KlingonLanguageProperties` to define the suffixes and to register the properties in the server. I've yet to determine the usefulness registering the properties, my belief is so that the file extensions can be manually configured in the server.
+For a sensor to know which files to analyze, a language must define the file extensions it uses. This is done extending `org.sonar.api.resources.AbstractLanguage` (which `Klingon` class does in the example) and overriding the method `getFileSuffixes()`. The example also uses the class `Klingon` to define the suffixes and to register the properties in the server. I've yet to determine the usefulness registering the properties, my belief is so that the file extensions can be manually configured in the server.
 
 This also registers the language itself so it can be recognized by the server and assigned to a repository as seen in the rules definition.
 
@@ -70,6 +70,6 @@ A sensor must implement `org.sonar.api.batch.sensor.Sensor`. It is tasked with f
 
 It can do this in two ways:
 
-- Performing the analysis itself by filtering files through the project's filesystem with the language extensions and running checks on said files. This is why it is useful to get the file suffixes from the overridden method in the class implementing `AbstractLanguage` and getting the same list of checks provided to the class implementing `RulesDefinition`.
+- Performing the analysis itself by filtering files through the project's filesystem with the language extensions and running checks on said files. This is why it is useful to get the file suffixes from the overridden method in the class implementing `AbstractLanguage` and getting the same list of checks provided to the class implementing `RulesDefinition`. For this, the example has the sensor `KlingonSensor`.
 
-- Parsing a report form a different tool, unrelated to Sonar, given in an XML format and generating issues from it.
+- Parsing a report form a different tool (imagined as _KlingonLint_ in this example), unrelated to Sonar, given in an XML format and generating issues from it. For this, the example has the sensor `KlingonLintIssuesLoaderSensor`.

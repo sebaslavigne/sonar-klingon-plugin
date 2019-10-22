@@ -7,12 +7,12 @@
   <packaging>sonar-plugin</packaging>
   <version>0.1</version>
 
-  <name>Example Plugin for SonarQube 8.0</name>
+  <name>Example Plugin for SonarQube 7.9 LTS</name>
   <description>Example of Plugin for SonarQube</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar.apiVersion>8.0</sonar.apiVersion>
+    <sonar.apiVersion>7.9</sonar.apiVersion>
     <jdk.min.version>1.8</jdk.min.version>
     <sonar.sources>src/main/java,src/main/js</sonar.sources>
   </properties>
@@ -47,10 +47,18 @@
       <version>${sonar.apiVersion}</version>
       <scope>test</scope>
     </dependency>
+    <!-- Included in the testing harness
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>2.21.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -30,11 +30,8 @@ public final class KlingonRulesDefinition implements RulesDefinition {
 	
 	public static final String PATH_TO_RULES_METADATA = "klingon/rules";
 	
-	protected static final String KEY = "analyzer";
-	protected static final String NAME = "Sonar Analyzer";
-	
-	public static final String REPO_KEY = Klingon.KEY + "-" + KEY;
-	protected static final String REPO_NAME = Klingon.KEY + "-" + NAME;
+	public static final String REPOSITORY = "klingon";
+	protected static final String NAME = "Klingon Analyzer";
 	
 	protected String rulesDefinitionFilePath() {
 		return PATH_TO_RULES_METADATA;
@@ -55,7 +52,7 @@ public final class KlingonRulesDefinition implements RulesDefinition {
 	@Override
 	public void define(Context context) {
 //    defineRulesForLanguage(context, REPO_KEY, REPO_NAME, Klingon.KEY);
-		NewRepository repository = context.createRepository(REPO_KEY, Klingon.KEY).setName(REPO_NAME);
+		NewRepository repository = context.createRepository(REPOSITORY, Klingon.KEY).setName(NAME);
 		RuleMetadataLoader ruleMetadataLoader = new RuleMetadataLoader(PATH_TO_RULES_METADATA);
 		
 		ruleMetadataLoader.addRulesByAnnotatedClass(repository, CheckList.getKlingonClasses());

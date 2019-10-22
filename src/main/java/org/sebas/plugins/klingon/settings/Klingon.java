@@ -19,45 +19,64 @@
  */
 package org.sebas.plugins.klingon.settings;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.config.Configuration;
+import org.sonar.api.config.PropertyDefinition;
 import org.sonar.api.resources.AbstractLanguage;
-import org.sebas.plugins.klingon.settings.KlingonLanguageProperties;
+import org.sonar.api.resources.Qualifiers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * This class defines the fictive Foo language.
  */
 public final class Klingon extends AbstractLanguage {
-
-  public static final String NAME = "Klingon";
-  public static final String KEY = "klingon";
-
-  private final Configuration config;
-
-  public Klingon(Configuration config) {
-    super(KEY, NAME);
-    this.config = config;
-  }
-
-  @Override
-  public String[] getFileSuffixes() {
-    String[] suffixes = filterEmptyStrings(config.getStringArray(KlingonLanguageProperties.FILE_SUFFIXES_KEY));
-    if (suffixes.length == 0) {
-      suffixes = StringUtils.split(KlingonLanguageProperties.FILE_SUFFIXES_DEFAULT_VALUE, ",");
-    }
-    return suffixes;
-  }
-
-  private String[] filterEmptyStrings(String[] stringArray) {
-    List<String> nonEmptyStrings = new ArrayList<>();
-    for (String string : stringArray) {
-      if (StringUtils.isNotBlank(string.trim())) {
-        nonEmptyStrings.add(string.trim());
-      }
-    }
-    return nonEmptyStrings.toArray(new String[nonEmptyStrings.size()]);
-  }
-
+	
+	public static final String NAME = "Klingon";
+	public static final String KEY = "klingon";
+	public static final String FILE_SUFFIXES_KEY = "sonar.klingon.file.suffixes";
+	public static final String FILE_SUFFIXES_DEFAULT_VALUE = ".klg,.kgn";
+	
+	private final Configuration config;
+	
+	public Klingon(Configuration config) {
+		super(KEY, NAME);
+		this.config = config;
+	}
+	
+	public static List<PropertyDefinition> getProperties() {
+		return asList(PropertyDefinition.builder(FILE_SUFFIXES_KEY)
+				.defaultValue(FILE_SUFFIXES_DEFAULT_VALUE)
+				.category("Klingon")
+				.name("Klingon File Suffixes")
+				.description("List of file suffixes that will be scanned.")
+				.category("Klingon")
+				.onQualifiers(Qualifiers.PROJECT)
+				.multiValues(true)
+				.build());
+		
+	}
+	
+	@Override
+	public String[] getFileSuffixes() {
+		String[] suffixes = filterEmptyStrings(config.getStringArray(FILE_SUFFIXES_KEY));
+		if (suffixes.length == 0) {
+			suffixes = StringUtils.split(FILE_SUFFIXES_DEFAULT_VALUE, ",");
+		}
+		return suffixes;
+	}
+	
+	private String[] filterEmptyStrings(String[] stringArray) {
+		List<String> nonEmptyStrings = new ArrayList<>();
+		for (String string : stringArray) {
+			if (StringUtils.isNotBlank(string.trim())) {
+				nonEmptyStrings.add(string.trim());
+			}
+		}
+		return nonEmptyStrings.toArray(new String[nonEmptyStrings.size()]);
+	}
+	
 }

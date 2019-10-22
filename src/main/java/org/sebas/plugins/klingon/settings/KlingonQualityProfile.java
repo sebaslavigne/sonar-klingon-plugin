@@ -34,7 +34,7 @@ public final class KlingonQualityProfile implements BuiltInQualityProfilesDefini
   public void define(Context context) {
     NewBuiltInQualityProfile profile = context.createBuiltInQualityProfile(QUALITY_PROFILE_NAME, Klingon.KEY);
     profile.setDefault(true);
-    BuiltInQualityProfileJsonLoader.load(profile, KlingonRulesDefinition.REPO_KEY, QUALITY_PROFILE_PATH);
+    BuiltInQualityProfileJsonLoader.load(profile, KlingonRulesDefinition.REPOSITORY, QUALITY_PROFILE_PATH);
     profile.done();
 
 //    NewBuiltInActiveRule rule1 = profile.activateRule(KlingonRulesDefinition.REPO_KEY, "ExampleRule1");

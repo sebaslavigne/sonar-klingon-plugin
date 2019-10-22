@@ -1,6 +1,6 @@
 package org.sebas.plugins.klingon.checks;
-
-import org.sonar.check.Rule;
+		
+		import org.sonar.check.Rule;
 
 @Rule(key = GruntCheck.RULE_KEY)
 public class GruntCheck {

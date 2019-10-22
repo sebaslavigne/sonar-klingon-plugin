@@ -19,12 +19,6 @@
  */
 package org.sebas.plugins.klingon.settings;
 
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import javax.xml.stream.XMLStreamException;
-
 import org.sonar.api.batch.fs.FileSystem;
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.sensor.Sensor;
@@ -36,6 +30,12 @@ import org.sonar.api.config.Configuration;
 import org.sonar.api.rule.RuleKey;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
+
+import javax.xml.stream.XMLStreamException;
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * The goal of this Sensor is to load the results of an analysis performed by a fictive external tool named: FooLint
@@ -136,7 +136,7 @@ public class KlingonLintIssuesLoaderSensor implements Sensor {
   }
 
   private static String getRepositoryKeyForLanguage(String languageKey) {
-    return languageKey.toLowerCase() + "-" + KlingonRulesDefinition.KEY;
+    return languageKey.toLowerCase();
   }
 
   @Override

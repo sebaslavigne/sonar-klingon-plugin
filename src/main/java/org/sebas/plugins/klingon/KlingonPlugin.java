@@ -19,16 +19,8 @@
  */
 package org.sebas.plugins.klingon;
 
-import org.sebas.plugins.klingon.settings.Klingon;
-import org.sebas.plugins.klingon.settings.KlingonQualityProfile;
-import org.sebas.plugins.klingon.settings.KlingonRulesDefinition;
-import org.sebas.plugins.klingon.settings.KlingonLintIssuesLoaderSensor;
-import org.sebas.plugins.klingon.settings.KlingonLanguageProperties;
+import org.sebas.plugins.klingon.settings.*;
 import org.sonar.api.Plugin;
-import org.sonar.api.config.PropertyDefinition;
-
-import static java.util.Arrays.asList;
-import static org.sebas.plugins.klingon.settings.KlingonLanguageProperties.FILE_SUFFIXES_DEFAULT_VALUE;
 
 /**
  * This class is the entry point for all extensions. It is referenced in pom.xml.
@@ -37,36 +29,11 @@ public class KlingonPlugin implements Plugin {
 	
 	@Override
 	public void define(Context context) {
-		// tutorial on hooks
-		// http://docs.sonarqube.org/display/DEV/Adding+Hooks
-//    context.addExtensions(DisplayIssuesInScanner.class, DisplayQualityGateStatus.class);
-		
-		// tutorial on languages
-		context.addExtensions(Klingon.class, KlingonQualityProfile.class);
-		context.addExtensions(KlingonLanguageProperties.getProperties());
-		
-		// tutorial on measures
-//    context
-//      .addExtensions(ExampleMetrics.class, SetSizeOnFilesSensor.class, ComputeSizeAverage.class, ComputeSizeRating.class);
-		
-		// tutorial on rules
-//    context.addExtensions(JavaRulesDefinition.class, CreateIssuesOnJavaFilesSensor.class);
-		context.addExtensions(KlingonRulesDefinition.class, KlingonLintIssuesLoaderSensor.class);
-		
-		// tutorial on settings
-//    context
-//      .addExtensions(HelloWorldProperties.getProperties())
-//      .addExtension(SayHelloFromScanner.class);
-		
-		// tutorial on web extensions
-//    context.addExtension(MyPluginPageDefinition.class);
-		
-//		context.addExtensions(asList(
-//			PropertyDefinition.builder("sonar.klingon.file.suffixes")
-//				.name("Suffixes Klingon")
-//				.description("Suffixes supported by Klingon")
-//				.category("Klingon")
-//				.defaultValue(FILE_SUFFIXES_DEFAULT_VALUE)
-//				.build()));
+		context.addExtensions(Klingon.class,
+				KlingonQualityProfile.class,
+				Klingon.getProperties(),
+				KlingonSensor.class,
+				KlingonRulesDefinition.class,
+				KlingonLintIssuesLoaderSensor.class);
 	}
 }
