@@ -47,20 +47,14 @@ public class KlingonSensor implements Sensor {
 		for (InputFile file : inputFiles) {
 			FileLinesContext fileLinesContext = contextFactory.createFor(file);
 			fileLinesContext.setIntValue(CoreMetrics.NCLOC_DATA_KEY, 1, 1);
+			fileLinesContext.setIntValue(CoreMetrics.NCLOC_DATA_KEY, 2, 1);
 			fileLinesContext.save();
 			
-			context.<String>newMeasure()
-					.withValue("1")
-					.forMetric(CoreMetrics.NCLOC_DATA)
-					.on(file)
-					.save();
-			
 			context.<Integer>newMeasure()
-					.withValue(1)
+					.withValue(2)
 					.forMetric(CoreMetrics.NCLOC)
 					.on(file)
 					.save();
-			
 			
 			NewIssue newIssue = context.newIssue()
 					.forRule(RuleKey.of(KlingonRulesDefinition.REPOSITORY, GruntCheck.RULE_KEY));
